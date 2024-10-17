@@ -1,0 +1,43 @@
+{
+  "name": "vproj2",
+  "private": true,
+  "version": "0.0.0",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electorn": "wait-on tcp:3000 && cross-env NODE_ENV=development electron .",
+    "electron:serve": "concurrently -k \"yarn dev\" \"yarn electron\"",
+    "electron:bulid": "vite build && electron-builder"
+  },
+  "dependencies": {
+    "vue": "^3.5.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "concurrently": "^9.0.1",
+    "vite": "^5.4.8",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.your-website.your-app",
+    "productName": "ElectronApp",
+    "copyright": "Copyright © 2021 <your-name>",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
+  }
+}
